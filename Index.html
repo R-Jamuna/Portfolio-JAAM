@@ -1,0 +1,2747 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jamuna R | Portfolio</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%23d4628a'/><stop offset='100%25' stop-color='%23c084b4'/></linearGradient></defs><rect width='100' height='100' rx='50' fill='url(%23g)'/><text x='50' y='68' font-family='serif' font-size='52' font-weight='bold' fill='white' text-anchor='middle'>J</text></svg>">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Cormorant+Garant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --rose: #d4628a;
+            --lav: #c084b4;
+            --blush: #f0a0c0;
+            --gold: #c9a96e;
+            --cream: #fef6f9;
+            --petal: #fde8f0;
+            --dark: #2a0f1e;
+            --muted: #8a5070;
+            --muted2: #b07090;
+            --card: #fff8fb;
+            --bdr: rgba(212, 98, 138, .12);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--cream);
+            color: var(--dark);
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        #petalCanvas {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(ellipse 70% 60% at 90% 10%, rgba(212, 98, 138, .06) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 50% at 5% 80%, rgba(192, 132, 180, .07) 0%, transparent 60%),
+                radial-gradient(ellipse 40% 40% at 50% 50%, rgba(240, 160, 192, .04) 0%, transparent 70%);
+        }
+
+        nav,
+        .splash,
+        .dot-nav,
+        section,
+        .hero,
+        .about-section,
+        .skills-section,
+        .journey-section,
+        .gpt-section,
+        .projects-section,
+        .edu-section,
+        .contact-section,
+        footer {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ══ SPLASH ══ */
+        .splash {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: var(--cream);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .splash.hide {
+            animation: splashFade 1.2s ease forwards;
+        }
+
+        @keyframes splashFade {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(1.05);
+                pointer-events: none;
+            }
+        }
+
+        .splash-deco {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(212, 98, 138, .2);
+        }
+
+        .sd1 {
+            width: 600px;
+            height: 600px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: dRing 4s ease-in-out infinite;
+        }
+
+        .sd2 {
+            width: 400px;
+            height: 400px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: dRing 4s ease-in-out infinite .5s;
+        }
+
+        .sd3 {
+            width: 200px;
+            height: 200px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(212, 98, 138, .04);
+        }
+
+        @keyframes dRing {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: .5;
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.05);
+                opacity: 1;
+            }
+        }
+
+        .splash-flower {
+            position: absolute;
+            font-size: 40px;
+            opacity: 0;
+            animation: flowerIn .8s ease forwards;
+        }
+
+        .sf1 {
+            top: 40px;
+            left: 40px;
+            animation-delay: .2s;
+        }
+
+        .sf2 {
+            top: 40px;
+            right: 40px;
+            animation-delay: .4s;
+        }
+
+        .sf3 {
+            bottom: 40px;
+            left: 40px;
+            animation-delay: .6s;
+        }
+
+        .sf4 {
+            bottom: 40px;
+            right: 40px;
+            animation-delay: .8s;
+        }
+
+        @keyframes flowerIn {
+            from {
+                opacity: 0;
+                transform: scale(.5) rotate(-20deg);
+            }
+
+            to {
+                opacity: .6;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        .splash-center {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .splash-greeting {
+            font-family: 'Dancing Script', cursive;
+            font-size: 22px;
+            color: var(--rose);
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            animation: fadeUp .7s ease .3s both;
+        }
+
+        .splash-name {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(70px, 14vw, 140px);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--rose), var(--lav), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            animation: nameIn 1.2s cubic-bezier(.175, .885, .32, 1.275) .4s both;
+        }
+
+        @keyframes nameIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .splash-title {
+            font-family: 'Cormorant Garant', serif;
+            font-size: 16px;
+            font-style: italic;
+            color: var(--muted);
+            letter-spacing: 3px;
+            margin-top: 16px;
+            animation: fadeUp .7s ease 1s both;
+        }
+
+        .splash-divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 20px;
+            animation: fadeUp .6s ease 1.1s both;
+        }
+
+        .splash-divider::before {
+            content: '';
+            width: 48px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--rose));
+        }
+
+        .splash-divider::after {
+            content: '';
+            width: 48px;
+            height: 1px;
+            background: linear-gradient(90deg, var(--rose), transparent);
+        }
+
+        .splash-divider span {
+            font-size: 16px;
+        }
+
+        .splash-progress {
+            position: absolute;
+            bottom: 52px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            animation: fadeUp .6s ease .7s both;
+        }
+
+        .splash-bar {
+            width: 160px;
+            height: 2px;
+            background: rgba(212, 98, 138, .15);
+            border-radius: 100px;
+            overflow: hidden;
+        }
+
+        .splash-fill {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, var(--rose), var(--lav));
+            border-radius: 100px;
+            transition: width .04s linear;
+        }
+
+        .splash-pct {
+            font-family: 'Dancing Script', cursive;
+            font-size: 16px;
+            color: var(--rose);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ══ CURSOR ══ */
+        .cur-heart {
+            font-size: 18px;
+            color: var(--rose);
+            text-shadow: 0 0 8px rgba(212, 98, 138, .5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9000;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity .3s, font-size .2s;
+            line-height: 1;
+        }
+
+        body.ch .cur-heart {
+            font-size: 24px;
+            color: var(--lav);
+        }
+
+        body.cl .cur-heart {
+            font-size: 22px;
+            color: var(--rose);
+            animation: heartBeat .5s ease-in-out infinite;
+        }
+
+        .cur-ring {
+            width: 36px;
+            height: 36px;
+            border: 1.5px solid rgba(212, 98, 138, .4);
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 8999;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: width .4s cubic-bezier(.175, .885, .32, 1.275), height .4s cubic-bezier(.175, .885, .32, 1.275), border-color .3s, opacity .3s;
+        }
+
+        body.ch .cur-ring {
+            width: 54px;
+            height: 54px;
+            border-color: rgba(212, 98, 138, .6);
+        }
+
+        body.cl .cur-ring {
+            width: 46px;
+            height: 46px;
+            border-color: var(--rose);
+        }
+
+        @keyframes heartBeat {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.15);
+            }
+        }
+
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9001;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: sparkleOut .6s ease forwards;
+        }
+
+        @keyframes sparkleOut {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(-50%, -50%) translate(var(--dx), var(--dy)) scale(0);
+                opacity: 0;
+            }
+        }
+
+        @media(max-width:960px) {
+
+            .cur-heart,
+            .cur-ring {
+                display: none;
+            }
+
+            body {
+                cursor: auto !important;
+            }
+        }
+
+        /* ══ DOT NAV — fixed right side ══ */
+        .dot-nav {
+            position: fixed;
+            right: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 400;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            align-items: flex-end;
+        }
+
+        .dot-nav a {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(212, 98, 138, .25);
+            display: block;
+            transition: all .3s;
+            cursor: none;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        /* label appears to the LEFT of the dot */
+        .dot-nav a::after {
+            content: attr(data-label);
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: 'Dancing Script', cursive;
+            font-size: 13px;
+            color: var(--rose);
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity .3s;
+            pointer-events: none;
+        }
+
+        .dot-nav a:hover::after,
+        .dot-nav a.active::after {
+            opacity: 1;
+        }
+
+        .dot-nav a:hover,
+        .dot-nav a.active {
+            background: var(--rose);
+            transform: scale(1.4);
+            box-shadow: 0 0 8px rgba(212, 98, 138, .4);
+        }
+
+        @media(max-width:960px) {
+            .dot-nav {
+                display: none;
+            }
+        }
+
+        /* ══ NAV — transparent, just logo + hire me ══ */
+        nav {
+            position:fixed;top:0;left:0;right:0;z-index:500;
+            padding:22px 52px;
+            display:flex;align-items:center;justify-content:space-between;
+            /* ✅ fully transparent — no background, no border, no shadow ever */
+            background:transparent!important;
+            border-bottom:none!important;
+            box-shadow:none!important;
+            backdrop-filter:none!important;
+            transition:padding .4s;
+        }
+
+        nav.scrolled {
+            padding:14px 52px;
+            /* ✅ stays transparent even on scroll */
+            background:transparent!important;
+            border-bottom:none!important;
+            box-shadow:none!important;
+        }
+
+        .nav-logo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--rose), var(--lav));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            cursor: none;
+        }
+
+        .nav-hire {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 22px;
+            background: linear-gradient(135deg, var(--rose), var(--lav));
+            border: none;
+            border-radius: 100px;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: none;
+            transition: all .3s;
+            font-family: 'Space Grotesk', sans-serif;
+            box-shadow: 0 4px 16px rgba(212, 98, 138, .25);
+        }
+
+        .nav-hire i {
+            font-size: 13px;
+        }
+
+        .nav-hire:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(212, 98, 138, .35);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: none;
+            padding: 4px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 1.5px;
+            background: var(--rose);
+            border-radius: 2px;
+            transition: all .3s;
+        }
+
+        .hamburger.open span:nth-child(1) {
+            transform: translateY(6.5px) rotate(45deg);
+        }
+
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.open span:nth-child(3) {
+            transform: translateY(-6.5px) rotate(-45deg);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            inset: 0;
+            z-index: 499;
+            background: var(--cream);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 28px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .35s;
+        }
+
+        .mobile-menu.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .mobile-menu a {
+            font-family: 'Dancing Script', cursive;
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--muted2);
+            text-decoration: none;
+            transition: color .3s;
+            cursor: none;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--rose);
+        }
+
+        /* ══ HERO ══ */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            padding: 120px 0 80px;
+            overflow: hidden;
+            gap: 0;
+            position: relative;
+        }
+
+        .hero-photo-side {
+            position: relative;
+            height: 100%;
+            min-height: 80vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-photo-bg {
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(240, 160, 192, .2), rgba(192, 132, 180, .15));
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .hero-photo-frame {
+            position: relative;
+            z-index: 2;
+            width: 340px;
+            height: 480px;
+            border-radius: 200px 200px 180px 180px;
+            overflow: hidden;
+            border: 3px solid rgba(212, 98, 138, .2);
+            box-shadow: 0 32px 80px rgba(212, 98, 138, .15), 0 0 0 8px rgba(212, 98, 138, .06);
+            animation: photoFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes photoFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(-.5deg);
+            }
+
+            50% {
+                transform: translateY(-18px) rotate(.5deg);
+            }
+        }
+
+        .hero-photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            display: block;
+        }
+
+        .hero-photo-frame .ph-init {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, var(--petal), var(--blush));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Dancing Script', cursive;
+            font-size: 120px;
+            font-weight: 700;
+            color: var(--rose);
+        }
+
+        .hero-deco-ring {
+            position: absolute;
+            width: 480px;
+            height: 480px;
+            border-radius: 50%;
+            border: 1px dashed rgba(212, 98, 138, .2);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: ringRotate 30s linear infinite;
+        }
+
+        @keyframes ringRotate {
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        /* open to work — floating near photo bottom right */
+        .open-badge {
+            position: absolute;
+            bottom: 12%;
+            right: 4%;
+            z-index: 4;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: #fff;
+            border: 1.5px solid rgba(212, 98, 138, .25);
+            border-radius: 100px;
+            color: var(--rose);
+            font-family: 'Dancing Script', cursive;
+            font-size: 18px;
+            box-shadow: 0 8px 24px rgba(212, 98, 138, .15);
+            animation: badgeFloat 4s ease-in-out infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes badgeFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(-.5deg);
+            }
+
+            50% {
+                transform: translateY(-10px) rotate(.5deg);
+            }
+        }
+
+        .open-badge-dot {
+            width: 9px;
+            height: 9px;
+            background: #4ade80;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #4ade80;
+            animation: pulse 2s infinite;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: .5;
+                transform: scale(.75);
+            }
+        }
+
+        .hero-text-side {
+            padding: 60px 60px 60px 52px;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Dancing Script', cursive;
+            font-size: 20px;
+            color: var(--rose);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: fadeUp .7s ease both;
+        }
+
+        .hero-eyebrow::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(212, 98, 138, .3), transparent);
+            max-width: 60px;
+        }
+
+        .hero-name {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(52px, 6.5vw, 90px);
+            font-weight: 700;
+            line-height: 1.0;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--rose) 60%, var(--lav) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeUp .7s ease .1s both;
+        }
+
+        .hero-subtitle {
+            font-family: 'Cormorant Garant', serif;
+            font-size: clamp(18px, 2.2vw, 26px);
+            font-style: italic;
+            color: var(--muted2);
+            margin-bottom: 28px;
+            animation: fadeUp .7s ease .2s both;
+            line-height: 1.4;
+        }
+
+        .hero-subtitle span {
+            color: var(--rose);
+            font-weight: 600;
+        }
+
+        .hero-desc {
+            font-size: 15px;
+            color: var(--muted);
+            line-height: 1.95;
+            max-width: 460px;
+            animation: fadeUp .7s ease .3s both;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-top: 44px;
+            animation: fadeUp .7s ease .4s both;
+        }
+
+        .btn-rose {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 14px 30px;
+            background: linear-gradient(135deg, var(--rose), var(--lav));
+            border: none;
+            border-radius: 100px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: none;
+            transition: all .3s;
+            font-family: 'Space Grotesk', sans-serif;
+            box-shadow: 0 8px 24px rgba(212, 98, 138, .3);
+        }
+
+        .btn-rose:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 32px rgba(212, 98, 138, .4);
+        }
+
+        .btn-outline-rose {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 14px 30px;
+            background: transparent;
+            border: 1.5px solid rgba(212, 98, 138, .3);
+            border-radius: 100px;
+            color: var(--rose);
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: none;
+            transition: all .3s;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .btn-outline-rose:hover {
+            background: rgba(212, 98, 138, .06);
+            border-color: var(--rose);
+        }
+
+        /* ══ ABOUT ══ */
+        .about-section {
+            padding: 120px 60px;
+        }
+
+        .about-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .sec-tag {
+            font-family: 'Dancing Script', cursive;
+            font-size: 20px;
+            color: var(--rose);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sec-tag::before {
+            content: '✦';
+            font-size: 12px;
+        }
+
+        .sec-hl {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(40px, 5vw, 68px);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .sec-hl .rose {
+            color: var(--rose);
+        }
+
+        .sec-hl .lav {
+            color: var(--lav);
+        }
+
+        .sec-sub-hl {
+            font-family: 'Cormorant Garant', serif;
+            font-size: 20px;
+            font-style: italic;
+            color: var(--muted2);
+            margin-bottom: 28px;
+        }
+
+        .about-bio {
+            font-size: 15px;
+            color: var(--muted);
+            line-height: 1.95;
+            margin-bottom: 28px;
+            border-left: 2px solid rgba(212, 98, 138, .2);
+            padding-left: 20px;
+        }
+
+        .about-bio p {
+            margin-bottom: 13px;
+        }
+
+        .about-bio p:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-bio strong {
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+            padding-top: 28px;
+            border-top: 1px solid var(--bdr);
+        }
+
+        .astat-val {
+            font-family: 'Dancing Script', cursive;
+            font-size: 46px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--rose), var(--lav));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+        }
+
+        .astat-lbl {
+            font-size: 12px;
+            color: var(--muted2);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 4px;
+            font-family: 'Cormorant Garant', serif;
+            font-style: italic;
+        }
+
+        .about-right {
+            position: relative;
+            height: 520px;
+        }
+
+        .about-card {
+            position: absolute;
+            background: var(--card);
+            border: 1px solid var(--bdr);
+            border-radius: 24px;
+            padding: 28px;
+            box-shadow: 0 8px 32px rgba(212, 98, 138, .08);
+            transition: all .35s;
+            cursor: none;
+        }
+
+        .about-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(212, 98, 138, .15);
+        }
+
+        .ac-main {
+            width: 280px;
+            top: 0;
+            right: 0;
+            z-index: 3;
+            background: linear-gradient(135deg, #fff, var(--petal));
+        }
+
+        .ac-skill {
+            width: 220px;
+            top: 160px;
+            left: 0;
+            z-index: 2;
+            transform: rotate(-2deg);
+        }
+
+        .ac-skill:hover {
+            transform: rotate(0deg) translateY(-6px) !important;
+        }
+
+        .ac-quote {
+            width: 250px;
+            bottom: 0;
+            right: 20px;
+            z-index: 1;
+            transform: rotate(1.5deg);
+        }
+
+        .ac-quote:hover {
+            transform: rotate(0deg) translateY(-6px) !important;
+        }
+
+        .ac-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            margin-bottom: 14px;
+        }
+
+        .ac-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .ac-text {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .ac-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 12px;
+        }
+
+        .ac-tag {
+            padding: 4px 12px;
+            background: rgba(212, 98, 138, .08);
+            border: 1px solid rgba(212, 98, 138, .15);
+            border-radius: 100px;
+            font-size: 11px;
+            color: var(--rose);
+        }
+
+        /* ══ MARQUEE ══ */
+        .marquee-wrap {
+            overflow: hidden;
+            border-top: 1px solid var(--bdr);
+            border-bottom: 1px solid var(--bdr);
+            background: rgba(212, 98, 138, .02);
+        }
+
+        .marquee-track {
+            display: flex;
+            animation: mScroll 24s linear infinite;
+            width: max-content;
+        }
+
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        .mitem {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 18px 32px;
+            border-right: 1px solid var(--bdr);
+            font-family: 'Cormorant Garant', serif;
+            font-size: 16px;
+            font-style: italic;
+            color: var(--muted2);
+            white-space: nowrap;
+            transition: color .3s;
+        }
+
+        .mitem:hover {
+            color: var(--rose);
+        }
+
+        .mitem i {
+            color: var(--rose);
+            font-size: 13px;
+        }
+
+        .mitem-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--blush);
+            align-self: center;
+        }
+
+        @keyframes mScroll {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* ══ SKILLS ══ */
+        .skills-section {
+            padding: 120px 60px;
+            background: rgba(212, 98, 138, .02);
+        }
+
+        .skills-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skills-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            padding: 32px;
+            background: var(--card);
+            border: 1px solid var(--bdr);
+            border-radius: 24px;
+            transition: all .35s;
+            position: relative;
+            overflow: hidden;
+            cursor: none;
+        }
+
+        .skill-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--rose), var(--lav));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .4s;
+        }
+
+        .skill-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(212, 98, 138, .1);
+            border-color: rgba(212, 98, 138, .2);
+        }
+
+        .skill-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            margin-bottom: 18px;
+        }
+
+        .skill-name {
+            font-family: 'Dancing Script', cursive;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .skill-desc {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .stag {
+            padding: 5px 13px;
+            background: rgba(212, 98, 138, .06);
+            border: 1px solid rgba(212, 98, 138, .12);
+            border-radius: 100px;
+            font-size: 12px;
+            color: var(--rose);
+            font-family: 'Cormorant Garant', serif;
+            font-style: italic;
+        }
+
+        /* ══ JOURNEY ══ */
+        .journey-section {
+            padding: 120px 60px;
+        }
+
+        .journey-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .journey-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+            margin-top: 60px;
+        }
+
+        .journey-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 40px;
+        }
+
+        .jstat {
+            padding: 28px;
+            background: var(--card);
+            border: 1px solid var(--bdr);
+            border-radius: 20px;
+            transition: all .3s;
+            cursor: none;
+        }
+
+        .jstat:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(212, 98, 138, .1);
+            border-color: rgba(212, 98, 138, .2);
+        }
+
+        .jstat-val {
+            font-family: 'Dancing Script', cursive;
+            font-size: 48px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--rose), var(--lav));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+        }
+
+        .jstat-lbl {
+            font-family: 'Cormorant Garant', serif;
+            font-size: 14px;
+            font-style: italic;
+            color: var(--muted2);
+            margin-top: 4px;
+        }
+
+        .jstat-desc {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 6px;
+            line-height: 1.6;
+        }
+
+        .journey-quote {
+            padding: 28px;
+            background: linear-gradient(135deg, rgba(212, 98, 138, .06), rgba(192, 132, 180, .04));
+            border: 1px solid rgba(212, 98, 138, .12);
+            border-radius: 20px;
+        }
+
+        .journey-quote p {
+            font-family: 'Cormorant Garant', serif;
+            font-size: 18px;
+            font-style: italic;
+            color: var(--dark);
+            line-height: 1.7;
+        }
+
+        .journey-quote cite {
+            font-size: 16px;
+            color: var(--rose);
+            margin-top: 10px;
+            display: block;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .journey-tl {
+            position: relative;
+        }
+
+        .tl-line {
+            position: absolute;
+            left: 24px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(180deg, var(--rose), var(--lav), var(--blush), transparent);
+        }
+
+        .tl-item {
+            position: relative;
+            padding-left: 64px;
+            padding-bottom: 48px;
+        }
+
+        .tl-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .tl-dot {
+            position: absolute;
+            left: 0;
+            top: 4px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--rose), var(--lav));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(212, 98, 138, .3);
+        }
+
+        .tl-card {
+            background: var(--card);
+            border: 1px solid var(--bdr);
+            border-radius: 20px;
+            padding: 28px;
+            transition: all .35s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tl-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--rose), var(--lav));
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform .4s;
+        }
+
+        .tl-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .tl-card:hover {
+            border-color: rgba(212, 98, 138, .2);
+            transform: translateX(6px);
+            box-shadow: 0 8px 32px rgba(212, 98, 138, .1);
+        }
+
+        .tl-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .tl-co {
+            font-family: 'Dancing Script', cursive;
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .tl-period {
+            padding: 4px 14px;
+            background: rgba(212, 98, 138, .08);
+            border: 1px solid rgba(212, 98, 138, .15);
+            border-radius: 100px;
+            font-size: 12px;
+            color: var(--rose);
+            font-family: 'Cormorant Garant', serif;
+            font-style: italic;
+        }
+
+        .tl-role {
+            font-size: 15px;
+            color: var(--lav);
+            font-weight: 500;
+            margin-bottom: 12px;
+            font-family: 'Cormorant Garant', serif;
+            font-style: italic;
+        }
+
+        .tl-desc {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.85;
+            margin-bottom: 16px;
+        }
+
+        .tl-pts {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding-top: 14px;
+            border-top: 1px solid var(--bdr);
+        }
+
+        .tl-pt {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .tl-pt::before {
+            content: '✦';
+            color: var(--rose);
+            font-size: 10px;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .tl-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 14px;
+        }
+
+        .ttag {
+            padding: 4px 12px;
+            background: rgba(212, 98, 138, .05);
+            border: 1px solid rgba(212, 98, 138, .12);
+            border-radius: 100px;
+            font-size: 11px;
+            color: var(--rose);
+            font-family: 'Cormorant Garant', serif;
+            font-style: italic;
+        }
+
+        /* ══ GPT ══ */
+        .gpt-section {
+            padding: 120px 60px;
+            background: rgba(212, 98, 138, .02);
+        }
+
+        .gpt-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gpt-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-top: 56px;
+        }
+
+        .gpt-feats {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .gpt-feat {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 18px 20px;
+            background: var(--card);
+            border: 1px solid var(--bdr);
+            border-radius: 18px;
+            transition: all .3s;
+            cursor: none;
+        }
+
+        .gpt-feat:hover {
+            border-color: rgba(212, 98, 138, .25);
+            transform: translateX(6px);
+            box-shadow: 0 6px 24px rgba(212, 98, 138, .08);
+        }
+
+        .gpt-feat-ico {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .gpt-feat-txt strong {
+            font-family: 'Dancing Script', cursive;
+            font-size: 18px;
+            display: block;
+            margin-bottom: 2px;
+            color: var(--dark);
+        }
+
+        .gpt-feat-txt span {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .gpt-card {
+            background: linear-gradient(135deg, #fff 0%, var(--petal) 100%);
+            border: 1px solid rgba(212, 98, 138, .15);
+            border-radius: 28px;
+            padding: 40px;
+            box-shadow: 0 16px 48px rgba(212, 98, 138, .12);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gpt-card::before {
+            content: '🌸';
+            position: absolute;
+            font-size: 120px;
+            top: -20px;
+            right: -20px;
+            opacity: .07;
+            line-height: 1;
+        }
+
+        .gpt-robot {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--rose), var(--lav));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: #fff;
+            margin: 0 auto 20px;
+            box-shadow: 0 8px 24px rgba(212, 98, 138, .3);
+            animation: robotPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes robotPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 8px 24px rgba(212, 98, 138, .3);
+            }
+
+            50% {
+                box-shadow: 0 8px 36px rgba(212, 98, 138, .5);
+            }
+        }
+
+        .gpt-card h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 12px;
+        }
+
+        .gpt-card p {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .gpt-asks {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 28px;
+        }
+
+        .gpt-ask {
+            padding: 7px 16px;
+            background: rgba(212, 98, 138, .07);
+            border: 1px solid rgba(212, 98, 138, .15);
+            border-radius: 100px;
+            font-size: 12px;
+            color: var(--rose);
+            font-family: 'Cormorant Garant', serif;
+            font-style: italic;
+        }
+
+        .gpt-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, var(--rose), var(--lav));
+            border: none;
+            border-radius: 100px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: none;
+            transition: all .3s;
+            font-family: 'Space Grotesk', sans-serif;
+            box-shadow: 0 8px 24px rgba(212, 98, 138, .3);
+        }
+
+        .gpt-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 32px rgba(212, 98, 138, .4);
+        }
+
+        /* ══ PROJECTS ══ */
+        .projects-section {
+            padding: 120px 60px;
+        }
+
+        .proj-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .proj-header {
+            text-align: center;
+            margin-bottom: 72px;
+        }
+
+        .proj-bento {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        .pcard {
+            background: var(--card);
+            border: 1px solid var(--bdr);
+            border-radius: 24px;
+            padding: 32px;
+            transition: all .4s;
+            cursor: none;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .pcard:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 56px rgba(212, 98, 138, .12);
+            border-color: rgba(212, 98, 138, .25);
+        }
+
+        .pcard.big {
+            grid-column: span 2;
+        }
+
+        .pcard-num {
+            font-family: 'Dancing Script', cursive;
+            font-size: 72px;
+            font-weight: 700;
+            background: linear-gradient(135deg, rgba(212, 98, 138, .2), rgba(192, 132, 180, .1));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .pcard-lbl {
+            font-family: 'Cormorant Garant', serif;
+            font-size: 12px;
+            font-style: italic;
+            color: var(--muted2);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .pcard-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(20px, 2vw, 28px);
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 12px;
+        }
+
+        .pcard-desc {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: 18px;
+        }
+
+        .pcard-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 18px;
+        }
+
+        .pbadge {
+            padding: 4px 12px;
+            background: rgba(192, 132, 180, .08);
+            border: 1px solid rgba(192, 132, 180, .2);
+            border-radius: 100px;
+            font-size: 11px;
+            color: var(--lav);
+            font-family: 'Cormorant Garant', serif;
+            font-style: italic;
+        }
+
+        .pcard-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            color: var(--rose);
+            font-size: 13px;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: none;
+            border-bottom: 1px solid rgba(212, 98, 138, .2);
+            padding-bottom: 2px;
+            transition: all .3s;
+        }
+
+        .pcard-link:hover {
+            gap: 11px;
+            border-color: var(--rose);
+        }
+
+        /* ══ EDUCATION ══ */
+        .edu-section {
+            padding: 120px 60px;
+            background: rgba(212, 98, 138, .02);
+        }
+
+        .edu-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .edu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 52px;
+        }
+
+        .edu-card {
+            padding: 32px;
+            background: var(--card);
+            border: 1px solid var(--bdr);
+            border-radius: 24px;
+            transition: all .35s;
+            position: relative;
+            overflow: hidden;
+            cursor: none;
+        }
+
+        .edu-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--rose), var(--lav));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .4s;
+        }
+
+        .edu-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .edu-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 40px rgba(212, 98, 138, .1);
+            border-color: rgba(212, 98, 138, .2);
+        }
+
+        .edu-yr {
+            font-family: 'Dancing Script', cursive;
+            font-size: 16px;
+            color: var(--rose);
+            margin-bottom: 12px;
+        }
+
+        .edu-deg {
+            font-family: 'Dancing Script', cursive;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 6px;
+        }
+
+        .edu-field {
+            font-family: 'Cormorant Garant', serif;
+            font-size: 14px;
+            font-style: italic;
+            color: var(--muted2);
+            margin-bottom: 9px;
+        }
+
+        .edu-inst {
+            font-size: 13px;
+            color: var(--lav);
+            font-weight: 500;
+            margin-bottom: 18px;
+        }
+
+        .edu-grade {
+            display: inline-flex;
+            padding: 5px 14px;
+            background: rgba(212, 98, 138, .08);
+            border: 1px solid rgba(212, 98, 138, .15);
+            border-radius: 100px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 16px;
+            color: var(--rose);
+        }
+
+        /* ══ CONTACT ══ */
+        .contact-section {
+            padding: 120px 60px 140px;
+        }
+
+        .con-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .con-deco {
+            font-size: 48px;
+            margin-bottom: 20px;
+            animation: spin 8s linear infinite;
+            display: block;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .con-hl {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(50px, 8vw, 100px);
+            font-weight: 700;
+            line-height: 1.0;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--dark), var(--rose), var(--lav));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .con-sub {
+            font-family: 'Cormorant Garant', serif;
+            font-size: 18px;
+            font-style: italic;
+            color: var(--muted2);
+            line-height: 1.8;
+            margin-bottom: 52px;
+        }
+
+        .con-links {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 44px;
+        }
+
+        .clink {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 13px 22px;
+            background: var(--card);
+            border: 1px solid var(--bdr);
+            border-radius: 100px;
+            color: var(--muted2);
+            text-decoration: none;
+            font-family: 'Cormorant Garant', serif;
+            font-style: italic;
+            font-size: 15px;
+            transition: all .3s;
+            cursor: none;
+        }
+
+        .clink:hover {
+            border-color: rgba(212, 98, 138, .3);
+            color: var(--rose);
+            background: rgba(212, 98, 138, .04);
+            box-shadow: 0 6px 20px rgba(212, 98, 138, .1);
+        }
+
+        /* ══ FOOTER ══ */
+        footer {
+            padding: 28px 60px;
+            border-top: 1px solid var(--bdr);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--muted2);
+        }
+
+        .footer-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 18px;
+        }
+
+        /* ══ REVEAL ══ */
+        .rv {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity .75s ease, transform .75s cubic-bezier(.175, .885, .32, 1.275);
+        }
+
+        .rl {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity .75s ease, transform .75s cubic-bezier(.175, .885, .32, 1.275);
+        }
+
+        .rr {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity .75s ease, transform .75s cubic-bezier(.175, .885, .32, 1.275);
+        }
+
+        .rv.on,
+        .rl.on,
+        .rr.on {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* ══ RESPONSIVE ══ */
+        @media(max-width:960px) {
+            nav {
+                padding: 18px 24px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 130px 24px 80px;
+                gap: 48px;
+            }
+
+            .hero-text-side {
+                padding: 40px 24px;
+            }
+
+            .open-badge {
+                bottom: 8%;
+                right: 2%;
+            }
+
+            .about-section,
+            .skills-section,
+            .journey-section,
+            .gpt-section,
+            .projects-section,
+            .edu-section,
+            .contact-section {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+
+            .about-inner {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .about-right {
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .about-card {
+                position: relative;
+                top: auto;
+                left: auto;
+                right: auto;
+                bottom: auto;
+                transform: none !important;
+                width: 100% !important;
+            }
+
+            .journey-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .gpt-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .proj-bento {
+                grid-template-columns: 1fr;
+            }
+
+            .pcard.big {
+                grid-column: span 1;
+            }
+
+            .edu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            footer {
+                padding: 24px;
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="petalCanvas"></canvas>
+
+    <!-- SPLASH -->
+    <div class="splash" id="splash">
+        <div class="splash-deco sd1"></div>
+        <div class="splash-deco sd2"></div>
+        <div class="splash-deco sd3"></div>
+        <div class="splash-flower sf1">🌸</div>
+        <div class="splash-flower sf2">🌺</div>
+        <div class="splash-flower sf3">🌷</div>
+        <div class="splash-flower sf4">🌸</div>
+        <div class="splash-center">
+            <div class="splash-greeting">welcome to the portfolio of</div>
+            <div class="splash-name">Jamuna R.</div>
+            <div class="splash-title">CS Graduate &nbsp;&bull;&nbsp; AI Developer &nbsp;&bull;&nbsp; Bengaluru</div>
+            <div class="splash-divider"><span>🌸</span></div>
+        </div>
+        <div class="splash-progress">
+            <div class="splash-bar">
+                <div class="splash-fill" id="splashFill"></div>
+            </div>
+            <div class="splash-pct" id="splashPct">0%</div>
+        </div>
+    </div>
+
+    <!-- CURSOR -->
+    <div class="cur-heart" id="curHeart">♥</div>
+    <div class="cur-ring" id="curRing"></div>
+
+    <!-- DOT NAV — right side only -->
+    <div class="dot-nav" id="dotNav">
+        <a href="#home" data-label="Home" class="active"></a>
+        <a href="#about" data-label="About"></a>
+        <a href="#skills" data-label="Skills"></a>
+        <a href="#journey" data-label="Journey"></a>
+        <a href="#jamunagpt" data-label="GPT"></a>
+        <a href="#projects" data-label="Projects"></a>
+        <a href="#contact" data-label="Contact"></a>
+    </div>
+
+    <!-- NAV — transparent, Jam. + Hire Me only -->
+    <nav id="nav">
+        <div class="nav-logo">Jam.</div>
+        <div style="display:flex;align-items:center;gap:12px;">
+            <a href="mailto:jamuna.ravi096@gmail.com" class="nav-hire">
+                <i class="fas fa-wand-magic-sparkles"></i> Hire Me
+            </a>
+            <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#home" class="mob-link">Home</a>
+        <a href="#about" class="mob-link">About</a>
+        <a href="#skills" class="mob-link">Skills</a>
+        <a href="#journey" class="mob-link">Journey</a>
+        <a href="#jamunagpt" class="mob-link">GPT</a>
+        <a href="#projects" class="mob-link">Projects</a>
+        <a href="#contact" class="mob-link">Contact</a>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <!-- LEFT: photo -->
+        <div class="hero-photo-side">
+            <div class="hero-photo-bg"></div>
+            <div class="hero-deco-ring"></div>
+            <div class="hero-photo-frame">
+                <img src="jamuna.jpg" alt="Jamuna R"
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <div class="ph-init" style="display:none;">J</div>
+            </div>
+            <!-- Open to Work — floating near photo -->
+            <div class="open-badge">
+                <span class="open-badge-dot"></span> Open to Work 🌸
+            </div>
+        </div>
+
+        <!-- RIGHT: text -->
+        <div class="hero-text-side">
+            <div class="hero-eyebrow">Hello, world! ✨</div>
+            <h1 class="hero-name">Jamuna R.</h1>
+            <p class="hero-subtitle">
+                CS Graduate &amp; <span>AI Developer</span><br>
+                turning ideas into <em>intelligent</em> software
+            </p>
+            <p class="hero-desc">
+                A Computer Science graduate from Bengaluru with a heart for building things that matter. From
+                GenAI-powered Android apps to machine learning models — I write code that thinks.
+            </p>
+            <div class="hero-ctas">
+                <a href="#projects" class="btn-rose"><i class="fas fa-rocket"></i> View My Work</a>
+                <a href="Jamuna_resume.pdf" target="_blank" class="btn-outline-rose"><i class="fas fa-file"></i> My Resume</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about-section" id="about">
+        <div class="about-inner">
+            <div class="about-left rl">
+                <div class="sec-tag">About Me</div>
+                <h2 class="sec-hl">A dreamer<br>who <span class="rose">codes.</span></h2>
+                <p class="sec-sub-hl">Building with heart &amp; hustle ✨</p>
+                <div class="about-bio">
+                    <p>I'm a <strong>Computer Science graduate</strong> from Sri Krishna Institute of Technology,
+                        Bengaluru, with a 7.5 CGPA. My passion lives at the intersection of AI, mobile development and
+                        building software that genuinely matters.</p>
+                    <p>I've shipped projects ranging from <strong>AI chatbots</strong> and <strong>ML-based pest
+                            detection</strong> to a <strong>GenAI-powered Android app</strong> for rainwater harvesting
+                        — each one a new adventure.</p>
+                    <p>Now actively seeking an <strong>entry-level role</strong> where I can grow fast, contribute
+                        meaningfully and work on problems worth solving.</p>
+                </div>
+                <div class="about-stats">
+                    <div>
+                        <div class="astat-val">3+</div>
+                        <div class="astat-lbl">Projects Built</div>
+                    </div>
+                    <div>
+                        <div class="astat-val">2</div>
+                        <div class="astat-lbl">Internships</div>
+                    </div>
+                    <div>
+                        <div class="astat-val">7.5</div>
+                        <div class="astat-lbl">CGPA</div>
+                    </div>
+                </div>
+                <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                    <a href="#projects" class="btn-rose"><i class="fas fa-rocket"></i> Projects</a>
+                    <a href="Jamuna_resume.pdf" target="_blank" class="btn-outline-rose"><i class="fas fa-file"></i> Resume</a>
+                </div>
+            </div>
+            <div class="about-right rr">
+                <div class="about-card ac-main">
+                    <div class="ac-icon" style="background:rgba(212,98,138,.1);color:var(--rose)"><i
+                            class="fas fa-heart"></i></div>
+                    <div class="ac-title">What I love</div>
+                    <div class="ac-text">Building AI that feels magical. Writing code that solves real problems.
+                        Creating things people actually use and love.</div>
+                    <div class="ac-tags"><span class="ac-tag">AI Development</span><span
+                            class="ac-tag">Android</span><span class="ac-tag">ML</span></div>
+                </div>
+                <div class="about-card ac-skill">
+                    <div class="ac-icon" style="background:rgba(192,132,180,.1);color:var(--lav)"><i
+                            class="fas fa-code"></i></div>
+                    <div class="ac-title">My stack</div>
+                    <div class="ac-text">Python · Android · Generative AI · SQL · OpenCV · Streamlit</div>
+                </div>
+                <div class="about-card ac-quote">
+                    <div class="ac-icon" style="background:rgba(201,169,110,.1);color:var(--gold)"><i
+                            class="fas fa-quote-left"></i></div>
+                    <div class="ac-title">My motto</div>
+                    <div class="ac-text" style="font-family:'Cormorant Garant',serif;font-style:italic;font-size:15px;">
+                        "Code is poetry, and I'm learning to write beautifully."</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee-wrap">
+        <div class="marquee-track">
+            <div class="mitem"><i class="fab fa-python"></i>Python</div>
+            <div class="mitem-dot"></div>
+            <div class="mitem"><i class="fas fa-brain"></i>Machine Learning</div>
+            <div class="mitem-dot"></div>
+            <div class="mitem"><i class="fas fa-robot"></i>Generative AI</div>
+            <div class="mitem-dot"></div>
+            <div class="mitem"><i class="fab fa-android"></i>Android Dev</div>
+            <div class="mitem-dot"></div>
+            <div class="mitem"><i class="fas fa-database"></i>SQL</div>
+            <div class="mitem-dot"></div>
+            <div class="mitem"><i class="fas fa-vial"></i>QA Testing</div>
+            <div class="mitem-dot"></div>
+            <div class="mitem"><i class="fas fa-code"></i>HTML &amp; CSS</div>
+            <div class="mitem-dot"></div>
+            <div class="mitem"><i class="fas fa-flask"></i>Streamlit</div>
+            <div class="mitem-dot"></div>
+            <div class="mitem"><i class="fas fa-fire"></i>OpenCV</div>
+            <div class="mitem-dot"></div>
+            <div class="mitem"><i class="fas fa-mobile-alt"></i>Android Studio</div>
+            <div class="mitem-dot"></div>
+            <div class="mitem"><i class="fas fa-cloud"></i>HuggingFace</div>
+            <div class="mitem-dot"></div>
+            <div class="mitem"><i class="fab fa-python"></i>Python</div>
+            <div class="mitem-dot"></div>
+            <div class="mitem"><i class="fas fa-brain"></i>Machine Learning</div>
+            <div class="mitem-dot"></div>
+            <div class="mitem"><i class="fas fa-robot"></i>Generative AI</div>
+            <div class="mitem-dot"></div>
+            <div class="mitem"><i class="fab fa-android"></i>Android Dev</div>
+            <div class="mitem-dot"></div>
+            <div class="mitem"><i class="fas fa-database"></i>SQL</div>
+            <div class="mitem-dot"></div>
+            <div class="mitem"><i class="fas fa-vial"></i>QA Testing</div>
+            <div class="mitem-dot"></div>
+            <div class="mitem"><i class="fas fa-code"></i>HTML &amp; CSS</div>
+            <div class="mitem-dot"></div>
+            <div class="mitem"><i class="fas fa-flask"></i>Streamlit</div>
+            <div class="mitem-dot"></div>
+            <div class="mitem"><i class="fas fa-fire"></i>OpenCV</div>
+            <div class="mitem-dot"></div>
+            <div class="mitem"><i class="fas fa-cloud"></i>HuggingFace</div>
+        </div>
+    </div>
+
+    <!-- SKILLS -->
+    <section class="skills-section" id="skills">
+        <div class="skills-inner">
+            <div class="skills-header rv">
+                <div class="sec-tag" style="justify-content:center">My Skills</div>
+                <h2 class="sec-hl" style="text-align:center">Technical <span class="rose">Arsenal</span></h2>
+                <p
+                    style="font-family:'Cormorant Garant',serif;font-style:italic;color:var(--muted2);font-size:18px;margin-top:8px;">
+                    Skills I've lovingly built through real projects &amp; internships 🌸</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card rv" style="transition-delay:.00s">
+                    <div class="skill-icon" style="background:rgba(212,98,138,.1);color:var(--rose)"><i
+                            class="fas fa-code"></i></div>
+                    <div class="skill-name">Programming</div>
+                    <div class="skill-desc">Core languages I use to build software — from scripting to web interfaces
+                        and data work.</div>
+                    <div class="skill-tags"><span class="stag">Python</span><span class="stag">SQL</span><span
+                            class="stag">HTML</span><span class="stag">CSS</span></div>
+                </div>
+                <div class="skill-card rv" style="transition-delay:.08s">
+                    <div class="skill-icon" style="background:rgba(192,132,180,.1);color:var(--lav)"><i
+                            class="fas fa-brain"></i></div>
+                    <div class="skill-name">AI &amp; Machine Learning</div>
+                    <div class="skill-desc">Hands-on with ML workflows, generative AI tools and data preprocessing
+                        pipelines.</div>
+                    <div class="skill-tags"><span class="stag">ML Workflow</span><span class="stag">Gen AI</span><span
+                            class="stag">Streamlit</span><span class="stag">OpenCV</span></div>
+                </div>
+                <div class="skill-card rv" style="transition-delay:.16s">
+                    <div class="skill-icon" style="background:rgba(201,169,110,.1);color:var(--gold)"><i
+                            class="fas fa-vial"></i></div>
+                    <div class="skill-name">Testing &amp; QA</div>
+                    <div class="skill-desc">Software and content quality assurance from real internship environments.
+                    </div>
+                    <div class="skill-tags"><span class="stag">SDLC</span><span class="stag">STLC</span><span
+                            class="stag">QA Analysis</span><span class="stag">Content Review</span></div>
+                </div>
+                <div class="skill-card rv" style="transition-delay:.24s">
+                    <div class="skill-icon" style="background:rgba(212,98,138,.1);color:var(--rose)"><i
+                            class="fab fa-android"></i></div>
+                    <div class="skill-name">Mobile Dev</div>
+                    <div class="skill-desc">Built Android apps with real-time APIs, local databases and AI-powered
+                        features.</div>
+                    <div class="skill-tags"><span class="stag">Android</span><span class="stag">Room DB</span><span
+                            class="stag">REST APIs</span><span class="stag">Android Studio</span></div>
+                </div>
+                <div class="skill-card rv" style="transition-delay:.32s">
+                    <div class="skill-icon" style="background:rgba(192,132,180,.1);color:var(--lav)"><i
+                            class="fas fa-tools"></i></div>
+                    <div class="skill-name">Tools &amp; Tech</div>
+                    <div class="skill-desc">Development environments I use daily to build and ship software effectively.
+                    </div>
+                    <div class="skill-tags"><span class="stag">VS Code</span><span class="stag">Jupyter</span><span
+                            class="stag">Google Colab</span><span class="stag">HuggingFace</span></div>
+                </div>
+                <div class="skill-card rv" style="transition-delay:.40s">
+                    <div class="skill-icon" style="background:rgba(201,169,110,.1);color:var(--gold)"><i
+                            class="fas fa-desktop"></i></div>
+                    <div class="skill-name">Operating Systems</div>
+                    <div class="skill-desc">Comfortable across major OS environments for dev, testing and deployment.
+                    </div>
+                    <div class="skill-tags"><span class="stag">Windows</span><span class="stag">Linux</span><span
+                            class="stag">MacOS</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JOURNEY -->
+    <section class="journey-section" id="journey">
+        <div class="journey-inner">
+            <div class="rv" style="text-align:center;">
+                <div class="sec-tag" style="justify-content:center">Experience</div>
+                <h2 class="sec-hl">My Journey <span class="rose">So Far</span></h2>
+                <p
+                    style="font-family:'Cormorant Garant',serif;font-style:italic;color:var(--muted2);font-size:18px;margin-top:8px;">
+                    Every role, every line of code, every lesson 💫</p>
+            </div>
+            <div class="journey-layout">
+                <div class="rl">
+                    <div class="journey-stats">
+                        <div class="jstat">
+                            <div class="jstat-val">2</div>
+                            <div class="jstat-lbl">Internships</div>
+                            <div class="jstat-desc">Real-world experience across AI dev and quality assurance.</div>
+                        </div>
+                        <div class="jstat">
+                            <div class="jstat-val">4</div>
+                            <div class="jstat-lbl">Months</div>
+                            <div class="jstat-desc">Total internship duration in production environments.</div>
+                        </div>
+                        <div class="jstat">
+                            <div class="jstat-val">2</div>
+                            <div class="jstat-lbl">Domains</div>
+                            <div class="jstat-desc">Android/GenAI development and content QA.</div>
+                        </div>
+                        <div class="jstat">
+                            <div class="jstat-val">3+</div>
+                            <div class="jstat-lbl">Projects</div>
+                            <div class="jstat-desc">Shipped independently — ML models to full Android apps.</div>
+                        </div>
+                    </div>
+                    <div class="journey-quote rv">
+                        <p>"Every project I build is a step toward the developer I'm becoming — one commit at a time."
+                        </p>
+                        <cite>— Jamuna R. 🌸</cite>
+                    </div>
+                </div>
+                <div class="journey-tl rr">
+                    <div class="tl-line"></div>
+                    <div class="tl-item">
+                        <div class="tl-dot"><i class="fab fa-android"></i></div>
+                        <div class="tl-card">
+                            <div class="tl-top">
+                                <div class="tl-co">Mind Matrix</div>
+                                <div class="tl-period">Feb 2026 — May 2026</div>
+                            </div>
+                            <div class="tl-role">Android App Development Intern (Generative AI) · Remote, Bengaluru
+                            </div>
+                            <div class="tl-desc">Built Android applications deeply integrated with Generative AI — from
+                                intelligent chat interfaces to AI-driven content generation and smart recommendations. A
+                                real production role where every feature shipped reached actual users.</div>
+                            <div class="tl-pts">
+                                <div class="tl-pt"><span>Developed GenAI-integrated Android apps with chat, content
+                                        generation and smart recommendations</span></div>
+                                <div class="tl-pt"><span>Gained production-level experience with GenAI APIs and prompt
+                                        engineering for mobile</span></div>
+                                <div class="tl-pt"><span>Built and tested features end-to-end from UI to AI model
+                                        integration</span></div>
+                            </div>
+                            <div class="tl-tags"><span class="ttag">Android</span><span class="ttag">Generative
+                                    AI</span><span class="ttag">REST APIs</span><span class="ttag">Android Studio</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot"><i class="fas fa-vial"></i></div>
+                        <div class="tl-card">
+                            <div class="tl-top">
+                                <div class="tl-co">Instawork</div>
+                                <div class="tl-period">Mar 2026 — May 2026</div>
+                            </div>
+                            <div class="tl-role">QA Clipper Intern · Remote, Bengaluru</div>
+                            <div class="tl-desc">Part of a quality assurance team reviewing and evaluating video content
+                                against strict guidelines. This role sharpened my attention to detail, ability to work
+                                to defined standards and capacity to provide structured feedback.</div>
+                            <div class="tl-pts">
+                                <div class="tl-pt"><span>Reviewed video content systematically against defined quality
+                                        assurance guidelines</span></div>
+                                <div class="tl-pt"><span>Ensured accuracy, consistency and compliance across large
+                                        content volumes</span></div>
+                                <div class="tl-pt"><span>Provided structured feedback that continuously improved output
+                                        quality</span></div>
+                            </div>
+                            <div class="tl-tags"><span class="ttag">QA Analysis</span><span class="ttag">Content
+                                    Review</span><span class="ttag">SDLC</span><span class="ttag">STLC</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GPT -->
+    <section class="gpt-section" id="jamunagpt">
+        <div class="gpt-inner">
+            <div class="rv" style="text-align:center;">
+                <div class="sec-tag" style="justify-content:center">Jamuna.GPT</div>
+                <h2 class="sec-hl">Chat with my <span class="rose">AI</span></h2>
+                <p
+                    style="font-family:'Cormorant Garant',serif;font-style:italic;color:var(--muted2);font-size:18px;margin-top:8px;">
+                    My personal AI assistant knows everything about me 🤖✨</p>
+            </div>
+            <div class="gpt-layout">
+                <div class="gpt-feats rl">
+                    <div class="gpt-feat">
+                        <div class="gpt-feat-ico" style="background:rgba(212,98,138,.1);color:var(--rose)"><i
+                                class="fas fa-brain"></i></div>
+                        <div class="gpt-feat-txt"><strong>Powered by GPT-4o Mini</strong><span>Smart, fast and accurate
+                                answers about my professional profile</span></div>
+                    </div>
+                    <div class="gpt-feat">
+                        <div class="gpt-feat-ico" style="background:rgba(192,132,180,.1);color:var(--lav)"><i
+                                class="fas fa-user-tie"></i></div>
+                        <div class="gpt-feat-txt"><strong>Recruiter Friendly</strong><span>Professional, concise answers
+                                tailored for hiring teams</span></div>
+                    </div>
+                    <div class="gpt-feat">
+                        <div class="gpt-feat-ico" style="background:rgba(201,169,110,.1);color:var(--gold)"><i
+                                class="fas fa-bolt"></i></div>
+                        <div class="gpt-feat-txt"><strong>Instant Answers</strong><span>Ask anything about my skills and
+                                experience in seconds</span></div>
+                    </div>
+                    <div class="gpt-feat">
+                        <div class="gpt-feat-ico" style="background:rgba(212,98,138,.1);color:var(--rose)"><i
+                                class="fas fa-shield-alt"></i></div>
+                        <div class="gpt-feat-txt"><strong>Stays Focused</strong><span>Only answers questions about my
+                                professional profile</span></div>
+                    </div>
+                </div>
+                <div class="gpt-card rr">
+                    <div class="gpt-robot">🤖</div>
+                    <h3>Jamuna.GPT</h3>
+                    <p>Built on GPT-4o Mini, trained on my resume, skills and career journey. Ask anything — it answers
+                        like my personal recruiter!</p>
+                    <div class="gpt-asks">
+                        <span class="gpt-ask">💻 What are her skills?</span>
+                        <span class="gpt-ask">🚀 Tell me about projects</span>
+                        <span class="gpt-ask">💼 Internships done?</span>
+                        <span class="gpt-ask">⭐ Why hire Jamuna?</span>
+                        <span class="gpt-ask">🎓 Her education?</span>
+                    </div>
+                    <a href="https://huggingface.co/spaces/jamjamuna/Jamuna.GPT" target="_blank" class="gpt-btn">
+                        <i class="fas fa-robot"></i> Chat with Jamuna.GPT
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="projects-section" id="projects">
+        <div class="proj-inner">
+            <div class="proj-header rv">
+                <div class="sec-tag" style="justify-content:center">Projects</div>
+                <h2 class="sec-hl">Things I've <span class="rose">Built</span> with <span class="lav">Love</span></h2>
+                <p
+                    style="font-family:'Cormorant Garant',serif;font-style:italic;color:var(--muted2);font-size:18px;margin-top:8px;">
+                    Each one a little adventure 🌸</p>
+            </div>
+            <div class="proj-bento">
+                <div class="pcard big rv">
+                    <div class="pcard-num">01</div>
+                    <div class="pcard-lbl">Project · AI / NLP</div>
+                    <div class="pcard-title">AI Chatbot for Food Delivery</div>
+                    <div class="pcard-desc">AI-based chatbot automating the food ordering process and managing customer
+                        queries in real-time. Reduced manual customer support and improved overall user experience
+                        significantly.</div>
+                    <div class="pcard-badges"><span class="pbadge">Python</span><span class="pbadge">AI/ML</span><span
+                            class="pbadge">NLP</span><span class="pbadge">Chatbot</span></div>
+                </div>
+                <div class="pcard rv" style="transition-delay:.1s">
+                    <div class="pcard-num">02</div>
+                    <div class="pcard-lbl">Computer Vision</div>
+                    <div class="pcard-title">Pest &amp; Disease Detection</div>
+                    <div class="pcard-desc">ML model for real-time crop pest detection using OpenCV and CNN.</div>
+                    <div class="pcard-badges"><span class="pbadge">Python</span><span class="pbadge">OpenCV</span><span
+                            class="pbadge">CNN</span></div>
+                </div>
+                <div class="pcard rv" style="transition-delay:.15s">
+                    <div class="pcard-num">03</div>
+                    <div class="pcard-lbl">Android / GenAI</div>
+                    <div class="pcard-title">Jal-Sanchay Tracker</div>
+                    <div class="pcard-desc">GenAI Android app for rainwater tracking with real-time weather and AI
+                        suggestions.</div>
+                    <div class="pcard-badges"><span class="pbadge">Android</span><span class="pbadge">GenAI</span><span
+                            class="pbadge">Room DB</span></div>
+                </div>
+                <div class="pcard big rv" style="transition-delay:.2s">
+                    <div class="pcard-num">04</div>
+                    <div class="pcard-lbl">Project · Generative AI</div>
+                    <div class="pcard-title">Jamuna.GPT</div>
+                    <div class="pcard-desc">A personal AI assistant built on GPT-4o Mini answering recruiter questions
+                        about my career, skills and background. Live on HuggingFace!</div>
+                    <div class="pcard-badges"><span class="pbadge">Generative AI</span><span
+                            class="pbadge">LLM</span><span class="pbadge">HuggingFace</span><span
+                            class="pbadge">Gradio</span></div>
+                    <a href="https://huggingface.co/spaces/jamjamuna/Jamuna.GPT" target="_blank" class="pcard-link">Try
+                        it live <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="edu-section" id="education">
+        <div class="edu-inner">
+            <div class="rv" style="text-align:center">
+                <div class="sec-tag" style="justify-content:center">Education</div>
+                <h2 class="sec-hl">Academic <span class="rose">Background</span></h2>
+            </div>
+            <div class="edu-grid">
+                <div class="edu-card rv">
+                    <div class="edu-yr">2023 — 2026 🎓</div>
+                    <div class="edu-deg">Bachelor of Engineering</div>
+                    <div class="edu-field">Computer Science &amp; Engineering</div>
+                    <div class="edu-inst">Sri Krishna Institute of Technology, Bengaluru</div>
+                    <span class="edu-grade">CGPA: 7.5 ✨</span>
+                </div>
+                <div class="edu-card rv" style="transition-delay:.1s">
+                    <div class="edu-yr">2017 — 2022</div>
+                    <div class="edu-deg">Diploma</div>
+                    <div class="edu-field">Computer Science</div>
+                    <div class="edu-inst">MEI Polytechnic, Bengaluru</div>
+                    <span class="edu-grade">60%</span>
+                </div>
+                <div class="edu-card rv" style="transition-delay:.2s">
+                    <div class="edu-yr">2016 — 2017</div>
+                    <div class="edu-deg">SSLC</div>
+                    <div class="edu-field">State Board</div>
+                    <div class="edu-inst">BNR Public School, Bengaluru</div>
+                    <span class="edu-grade">65.28%</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact-section" id="contact">
+        <div class="con-inner">
+            <div class="con-deco rv">🌸</div>
+            <h2 class="con-hl rv">Let's Create<br>Something<br>Beautiful</h2>
+            <p class="con-sub rv">I'm actively looking for entry-level roles in software development, AI/ML, or Android.
+                Let's connect and make something wonderful together! 💫</p>
+            <div class="con-links rv">
+                <a href="mailto:jamuna.ravi096@gmail.com" class="clink"><i class="fas fa-envelope"></i>
+                    jamuna.ravi096@gmail.com</a>
+                <a href="https://linkedin.com/in/jamunar" target="_blank" class="clink"><i class="fab fa-linkedin"></i>
+                    LinkedIn</a>
+                <a href="https://github.com/R-Jamuna" target="_blank" class="clink"><i class="fab fa-github"></i> GitHub</a>
+                <a href="Jamuna_resume.pdf" target="_blank" class="clink"><i class="fas fa-file"></i> Resume</a>
+            </div>
+            <div class="rv">
+                <a href="mailto:jamuna.ravi096@gmail.com" class="btn-rose">
+                    <i class="fas fa-paper-plane"></i> Say Hello 🌸
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-text">Crafted with 🌸 for Jamuna R.</div>
+        <div style="font-family:'Cormorant Garant',serif;font-style:italic;font-size:14px;color:var(--muted2);">&copy;
+            2026 All Rights Reserved</div>
+    </footer>
+
+    <script>
+        /* ══ PETAL PARTICLES ══ */
+        (() => {
+            const cv = document.getElementById('petalCanvas');
+            const ctx = cv.getContext('2d');
+            let W, H, petals = [];
+            function resize() { W = cv.width = innerWidth; H = cv.height = innerHeight; }
+            function makePetal() { return { x: Math.random() * W, y: -20, size: Math.random() * 12 + 6, speed: Math.random() * 1.2 + .4, sway: Math.random() * 2 - 1, swaySpeed: Math.random() * .02 + .01, swayPhase: Math.random() * Math.PI * 2, opacity: Math.random() * .5 + .2, rotation: Math.random() * Math.PI * 2, rotSpeed: (Math.random() - .5) * .03, color: ['#f0a0c0', '#d4628a', '#c084b4', '#e8c4d4', '#fde8f0'][Math.floor(Math.random() * 5)] }; }
+            function init() { petals = []; for (let i = 0; i < 25; i++) { const p = makePetal(); p.y = Math.random() * H; } resize(); }
+            function drawPetal(p) { ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rotation); ctx.globalAlpha = p.opacity; ctx.fillStyle = p.color; ctx.beginPath(); ctx.ellipse(0, 0, p.size * .6, p.size, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore(); }
+            function frame() {
+                ctx.clearRect(0, 0, W, H);
+                if (Math.random() < .03) petals.push(makePetal());
+                petals = petals.filter(p => { p.y += p.speed; p.x += Math.sin(p.swayPhase) * p.sway; p.swayPhase += p.swaySpeed; p.rotation += p.rotSpeed; drawPetal(p); return p.y < H + 30; });
+                while (petals.length > 40) petals.shift();
+                requestAnimationFrame(frame);
+            }
+            resize(); init(); frame();
+            addEventListener('resize', () => resize());
+        })();
+
+        /* ══ SPLASH ══ */
+        (() => {
+            const fill = document.getElementById('splashFill');
+            const pct = document.getElementById('splashPct');
+            const splash = document.getElementById('splash');
+            let p = 0;
+            document.body.style.overflow = 'hidden';
+            const iv = setInterval(() => {
+                const step = p < 60 ? (Math.random() * 3 + 1.5) : p < 85 ? (Math.random() * 2 + .8) : (Math.random() * .8 + .2);
+                p = Math.min(p + step, 100);
+                fill.style.width = p + '%';
+                pct.textContent = Math.floor(p) + '%';
+                if (p >= 100) {
+                    clearInterval(iv);
+                    setTimeout(() => { splash.classList.add('hide'); setTimeout(() => { splash.style.display = 'none'; document.body.style.overflow = ''; }, 1200); }, 500);
+                }
+            }, 38);
+        })();
+
+        /* ══ CURSOR ══ */
+        const curHeart = document.getElementById('curHeart');
+        const curRing = document.getElementById('curRing');
+        let mx = -200, my = -200, r1x = -200, r1y = -200;
+        document.addEventListener('mousemove', e => {
+            mx = e.clientX; my = e.clientY;
+            curHeart.style.left = mx + 'px'; curHeart.style.top = my + 'px';
+            curHeart.style.opacity = '1';
+            curRing.style.opacity = '1';
+        });
+        (function animCur() {
+            r1x += (mx - r1x) * .12; r1y += (my - r1y) * .12;
+            curRing.style.left = r1x + 'px'; curRing.style.top = r1y + 'px';
+            requestAnimationFrame(animCur);
+        })();
+        document.addEventListener('click', e => {
+            for (let i = 0; i < 8; i++) {
+                const s = document.createElement('div');
+                s.className = 'sparkle';
+                const angle = Math.random() * Math.PI * 2, dist = 30 + Math.random() * 40;
+                s.style.left = e.clientX + 'px'; s.style.top = e.clientY + 'px';
+                s.style.setProperty('--dx', Math.cos(angle) * dist + 'px');
+                s.style.setProperty('--dy', Math.sin(angle) * dist + 'px');
+                s.style.background = ['var(--rose)', 'var(--lav)', 'var(--blush)', 'var(--gold)'][Math.floor(Math.random() * 4)];
+                document.body.appendChild(s);
+                setTimeout(() => s.remove(), 600);
+            }
+            const h = document.createElement('div');
+            h.style.cssText = `position:fixed;left:${e.clientX}px;top:${e.clientY}px;font-size:20px;pointer-events:none;z-index:9001;transform:translate(-50%,-50%);animation:heartBurst .8s ease forwards;`;
+            h.textContent = '🌸';
+            document.body.appendChild(h);
+            setTimeout(() => h.remove(), 800);
+        });
+        const ks = document.createElement('style');
+        ks.textContent = '@keyframes heartBurst{0%{opacity:1;transform:translate(-50%,-50%) scale(0);}50%{opacity:1;transform:translate(-50%,-50%) scale(1.5) translateY(-20px);}100%{opacity:0;transform:translate(-50%,-50%) scale(1) translateY(-40px);}}';
+        document.head.appendChild(ks);
+        document.querySelectorAll('a,button,.skill-card,.tl-card,.jstat,.pcard,.edu-card,.gpt-feat,.about-card').forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('ch'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('ch'));
+        });
+        document.querySelectorAll('a,button').forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('cl'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('cl'));
+        });
+
+        /* ══ HAMBURGER ══ */
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            mobileMenu.classList.toggle('open');
+            document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+        });
+        document.querySelectorAll('.mob-link').forEach(l => {
+            l.addEventListener('click', () => { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); document.body.style.overflow = ''; });
+        });
+
+        /* ══ NAV + DOT NAV ACTIVE ══ */
+        const nav = document.getElementById('nav');
+        const dotAs = document.querySelectorAll('.dot-nav a');
+        addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', scrollY > 60);
+            const ids = ['home', 'about', 'skills', 'journey', 'jamunagpt', 'projects', 'education', 'contact'];
+            let cur = 'home';
+            ids.forEach(id => { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top < innerHeight * .5) cur = id; });
+            dotAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+        });
+
+        /* ══ SCROLL REVEAL ══ */
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    const d = parseFloat(e.target.style.transitionDelay || '0') * 1000;
+                    setTimeout(() => { e.target.classList.add('on'); setTimeout(() => { e.target.style.transition = 'opacity .3s ease,border-color .3s,transform .3s'; }, d + 800); }, d);
+                    obs.unobserve(e.target);
+                }
+            });
+        }, { threshold: .08 });
+        document.querySelectorAll('.rv,.rl,.rr').forEach(el => obs.observe(el));
+
+        /* ══ 3D TILT ══ */
+        function tilt(sel, max = 8, sc = 1.02) {
+            document.querySelectorAll(sel).forEach(card => {
+                let cur = { rx: 0, ry: 0 }, tgt = { rx: 0, ry: 0 }, hov = false, id;
+                const lerp = (a, b, t) => a + (b - a) * t;
+                function run() {
+                    cur.rx = lerp(cur.rx, tgt.rx, .1); cur.ry = lerp(cur.ry, tgt.ry, .1);
+                    const s = hov ? sc : 1;
+                    card.style.setProperty('transform', `perspective(900px) rotateX(${cur.rx}deg) rotateY(${cur.ry}deg) scale3d(${s},${s},${s})`, 'important');
+                    if (hov || Math.abs(cur.rx - tgt.rx) > .005 || Math.abs(cur.ry - tgt.ry) > .005) id = requestAnimationFrame(run);
+                }
+                card.addEventListener('mouseenter', () => { hov = true; run(); });
+                card.addEventListener('mousemove', e => { const r = card.getBoundingClientRect(); tgt.ry = ((e.clientX - r.left) / r.width - .5) * max * 2; tgt.rx = -((e.clientY - r.top) / r.height - .5) * max * 2; });
+                card.addEventListener('mouseleave', () => { hov = false; tgt.rx = 0; tgt.ry = 0; cancelAnimationFrame(id); run(); });
+            });
+        }
+        tilt('.skill-card', 8, 1.02);
+        tilt('.edu-card', 9, 1.02);
+        tilt('.jstat', 7, 1.02);
+        tilt('.pcard', 7, 1.015);
+        tilt('.gpt-feat', 6, 1.015);
+    </script>
+</body>
+
+</html>
